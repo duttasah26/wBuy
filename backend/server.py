@@ -24,19 +24,24 @@ def analyze():
     query = request.args.get('query')
     location = request.args.get('location')
 
-    if not query:
-            return jsonify({"error": "Query parameter is required"}), 400
-    
-    # Format search query
-    search_term = f"Best {query} in {location}" if location else query
-
     if category == "food":
+        # Format search query
+        search_term = f"Best {query} in {location}" if location else query
+        reddit_results = scrape_reddit(search_term)
+        google_results = scrape_google_places(query, location)
+        analysis = perplexity_analysis(reddit_results + google_results)
+        return analysis
+
+    elif category == "product":
+        search_term = f"Best {query}" if location else query
         results = scrape_reddit(search_term)
         analysis = perplexity_analysis(results)
         return analysis
 
-    elif category == "service":
-        results = scrape_google_places(query, location)
+    elif category == "location":
+        search_term = f"Best {query} in {location}" if location else query
+        reddit_results = scrape_reddit(search_term)
+        google_results = scrape_google_places(query, location)
         analysis = perplexity_analysis(results)
         return analysis
 

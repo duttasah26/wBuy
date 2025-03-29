@@ -36,10 +36,7 @@ const SecondPage = () => {
 
     return (
         <div className="container text-center">
-            <h1 className="text-2xl">Results for best: <span className="text-red-500 font-semibold">{request} near {location}...</span></h1>
-        
-            <p>{results.userId}</p>
-            <p>{results.title}</p>
+            <h1 className="text-2xl py-10">Results for best: <span className="text-red-500 font-semibold">{request} near {location}...</span></h1>
 
             <Result/>
             <Result/>
@@ -48,4 +45,4 @@ const SecondPage = () => {
     )
 }
 
-export default SecondPage 
+export default SecondPage

@@ -1,0 +1,20 @@
+{
+  "_id": "67e84f581307ed2b95712560",
+  "analysis": {
+    "error": "Error connecting to Perplexity API: 400 Client Error: Bad Request for url: https://api.perplexity.ai/chat/completions"
+  },
+  "location": "Toronto",
+  "query": "Pizza",
+  "sources": {
+    "google_places": {
+      "places_count": 20,
+      "reviews_count": 100
+    },
+    "reddit": {
+      "comments_count": 6770,
+      "posts_count": 100
+    }
+  },
+  "timestamp": "2025-03-29T15:51:52.746873",
+  "type": "restaurant"
+}

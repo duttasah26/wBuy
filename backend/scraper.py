@@ -98,12 +98,8 @@ class RedditScraper:
             for comment in comment_list:
                 comment_data = {
                     'comment_id': comment.id,
-                    'author': str(comment.author) if comment.author else '[deleted]',
                     'body': comment.body,
-                    'created_utc': comment.created_utc,
                     'score': comment.score,
-                    'is_submitter': comment.is_submitter,
-                    'parent_id': comment.parent_id
                 }
 
                 comments_data.append(comment_data)

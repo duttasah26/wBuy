@@ -9,9 +9,9 @@ const Result = () => {
                 <div className="w-2/3 p-4">
                     <h3 className="text-lg font-semibold mb-2">Result</h3>
                     <div className="text-sm text-gray-500">
-                        <p className="mb-1">Category 1: <span class="font-medium text-white">Data 1</span></p>
-                        <p className="mb-1">Category 2: <span class="font-medium text-white">Data 2</span></p>
-                        <p className="mb-1">Category 3: <span class="font-medium text-white">Data 3</span></p>
+                        <p className="mb-1">Category 1: <span className="font-medium text-white">Data 1</span></p>
+                        <p className="mb-1">Category 2: <span className="font-medium text-white">Data 2</span></p>
+                        <p className="mb-1">Category 3: <span className="font-medium text-white">Data 3</span></p>
                     </div>
                 </div>
             </div>

@@ -120,7 +120,7 @@ def perplexity_analysis(comments):
 - Only include items explicitly mentioned and reviewed
 - Use EXACT quotes, do not paraphrase
 - Prioritize REVIEWS, WE NEED REVIEWS FROM EITHER GOOGLE OR REDDIT
-- Include links only if they appear in the data
+- MUST GOOGLE MAPS LINKS in LINK 
 - Include photo URLs from Google Places if available
 - Include Google ratings when available
 - Match Reddit comments to Google Places where possible

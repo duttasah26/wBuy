@@ -69,7 +69,7 @@ class RedditScraper:
                         continue  # Skip irrelevant posts
 
                 elif category=="product":
-                     if(query.lower() not in post.title.lower()):
+                    if(query.lower() not in post.title.lower()):
                          continue
 
                 post_data = {

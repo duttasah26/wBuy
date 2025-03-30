@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,22 +9,24 @@
     body {
       width: 400px;
       padding: 15px;
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      color: #333;
+      font-family: 'Rubik', Arial, sans-serif;
+      background-color: #0e2c3b;
+      color: #f8f0dd;
       margin: 0;
     }
 
     h2 {
-      color: #232f3e;
+      color: #f8f0dd;
       margin-top: 0;
       text-align: center;
+      font-size: 24px;
+      font-weight: 700;
     }
 
     .product-title {
       font-weight: bold;
       margin-bottom: 10px;
-      color: #c45500;
+      color: #ff5b44;
       font-size: 18px;
       text-align: center;
     }
@@ -31,68 +34,67 @@
     .loading {
       text-align: center;
       padding: 20px;
-      color: #555;
+      color: #f8f0dd;
     }
 
     .error {
-      color: #d00;
-      background-color: #fff0f0;
+      color: #ff5b44;
+      background-color: rgba(255, 91, 68, 0.1);
       padding: 10px;
-      border-radius: 4px;
+      border-radius: 8px;
       margin-bottom: 10px;
       font-size: 14px;
     }
 
     .reddit-section {
-      background-color: #fff;
-      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
       padding: 15px;
       margin-bottom: 20px;
-      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     }
 
     .product-name {
       font-size: 16px;
-      color: #0066c0;
+      color: #26a69a;
       margin-bottom: 8px;
     }
 
-    .post-title {
-      font-weight: bold;
-      color: #0077cc;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
+    .product-name {
+  font-size: 16px;
+  color: #4dd0c2; /* Lighter teal color */
+  margin-bottom: 8px;
+}
 
-    .comment-text {
-      font-style: italic;
-      color: #555;
-      font-size: 14px;
-      margin-bottom: 10px;
-      padding-left: 10px;
-    }
+.post-title {
+  font-weight: bold;
+  color: #4dd0c2; /* Lighter teal color */
+  font-size: 14px;
+  margin-bottom: 8px;
+}
 
-    .sentiment {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 12px;
-      margin-top: 5px;
-    }
+.comment-text {
+  font-style: italic;
+  color: #f8f0dd;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 2px solid #4dd0c2; /* Lighter teal color */
+}
 
     .sentiment.positive {
-      background-color: #dff0d8;
-      color: #3c763d;
+      background-color: rgba(77, 208, 194, 0.2); /* Adjusted opacity */
+      color: #4dd0c2; /* Lighter teal color */
     }
 
     .sentiment.negative {
-      background-color: #f2dede;
-      color: #a94442;
+      background-color: rgba(255, 91, 68, 0.2);
+      color: #ff5b44;
     }
 
     .sentiment.mixed {
-      background-color: #fcf8e3;
-      color: #8a6d3b;
+      background-color: rgba(255, 193, 7, 0.2);
+      color: #ffc107;
     }
 
     .features {
@@ -102,51 +104,69 @@
 
     .features span {
       display: inline-block;
-      background-color: #e7f4ff;
+      background-color: rgba(38, 166, 154, 0.1);
       padding: 2px 6px;
       margin-right: 5px;
       margin-bottom: 5px;
       border-radius: 3px;
+      color: #f8f0dd;
     }
 
     button {
-      background-color: #ff9900;
-      color: white;
+      background-color: #ff5b44;
+      color: #f8f0dd;
       border: none;
       padding: 8px 15px;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       display: block;
       width: 100%;
       margin-top: 20px;
+      transition: all 0.3s;
     }
 
     button:hover {
-      background-color: #e88a00;
+      background-color: #e64a33;
+      transform: scale(1.02);
     }
 
-    /* Add an icon to the loading state */
     .loading::before {
       content: '⏳';
       margin-right: 8px;
       font-size: 20px;
     }
 
-    /* Add a subtle background for the body */
     .content {
-      background-color: #fff;
-      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
       padding: 20px;
       margin-top: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 10px;
+      display: block;
+    }
+    
+    .ai-powered {
+      font-size: 12px;
+      text-align: center;
+      margin-bottom: 15px;
+      color: #f8f0dd;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <h2>Reddit Comments</h2>
+  <img src="/icons/WBuyLogo.png" alt="WBuy Logo" class="logo">
+  <div class="ai-powered">Scraping Reddit !</div>
+  <h2>Reddit Comments Analyser</h2>
   <div id="content" class="content">
-    <div class="loading">Loading product information...</div>
+    <div class="loading">Scraping Reddit for Info!</div>
   </div>
   <script src="popup.js"></script>
 </body>

@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f0dd;
+  --foreground: #0e2c3b;
+  --teal: #26a69a;
+  --orange-red: #ff5b44;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Rubik', 'Cooper Black', var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0e2c3b;
+    --foreground: #f8f0dd;
   }
+}
+
+@keyframes wobble {
+  0% { transform: translateX(0%); }
+  15% { transform: translateX(-15%) rotate(-5deg); }
+  30% { transform: translateX(10%) rotate(3deg); }
+  45% { transform: translateX(-10%) rotate(-3deg); }
+  60% { transform: translateX(5%) rotate(2deg); }
+  75% { transform: translateX(-5%) rotate(-1deg); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-wobble {
+  animation: wobble 1s ease;
+}
+
+.words-scroll {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: translateY(20px) scale(0.8); }
+  20% { opacity: 1; transform: translateY(0) scale(1.1); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pop-animation {
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Rubik', 'Cooper Black', Arial, Helvetica, sans-serif;
+  font-weight: 700;
 }
+
+.text-teal {
+  color: var(--teal);
+}
+
+.text-orange-red {
+  color: var(--orange-red);
+}
+
+.border-teal {
+  border-color: var(--teal);
+}
+
+.border-orange-red {
+  border-color: var(--orange-red);
+}
+
+.logo {
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background-color: var(--teal);
+  color: var(--background);
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--orange-red);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(0);
+}
+
+.animated-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animated-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+

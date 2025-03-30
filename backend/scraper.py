@@ -42,8 +42,8 @@ class RedditScraper:
 
 
 #THIS IS WHAT WE USE TO RUN REDDIT SCRAPPER
-    def search_reddit(self, topic, limit=10, sort='relevance', time_filter='all'):
-        search_query = topic
+    def search_reddit(self, query, location, limit=10, sort='relevance', time_filter='all'):
+        search_query = f"Best {query} in {location}"
         print(f"Searching Reddit for: '{search_query}'")
 
         posts_data = []
@@ -59,20 +59,16 @@ class RedditScraper:
 
             # Process each post
             for post in search_results:
+                if (query.lower() not in post.title.lower()) and (location.lower() not in post.title.lower()):
+                    continue  # Skip irrelevant posts
+
                 post_data = {
                     'post_id': post.id,
                     'title': post.title,
-                    'author': str(post.author) if post.author else '[deleted]',
-                    'subreddit': post.subreddit.display_name,
-                    'created_utc': post.created_utc,
                     'score': post.score,
                     'upvote_ratio': post.upvote_ratio,
-                    'url': post.url,
-                    'permalink': f"https://www.reddit.com{post.permalink}",
-                    'selftext': post.selftext,
                     'num_comments': post.num_comments,
-                    'is_original_content': post.is_original_content,
-                    'search_topic': topic,
+                    'search_topic': search_query,
                     'comments': self.get_comments(post)
                 }
 

@@ -26,28 +26,25 @@ def analyze():
 
     if category == "food":
         # Format search query
-        search_term = f"Best {query} in {location}" if location else query
-        reddit_results = scrape_reddit(search_term)
-        google_results = scrape_google_places(query, location)
-        analysis = perplexity_analysis(reddit_results + google_results)
+        reddit_results = scrape_reddit(query, location)
+        # google_results = scrape_google_places(query, location)
+        analysis = perplexity_analysis(reddit_results)
         return analysis
 
     elif category == "product":
-        search_term = f"Best {query}" if location else query
-        results = scrape_reddit(search_term)
+        results = scrape_reddit(query, location)
         analysis = perplexity_analysis(results)
         return analysis
 
     elif category == "location":
-        search_term = f"Best {query} in {location}" if location else query
-        reddit_results = scrape_reddit(search_term)
+        reddit_results = scrape_reddit(query, location)
         google_results = scrape_google_places(query, location)
         analysis = perplexity_analysis(results)
         return analysis
 
-def scrape_reddit(search_term):
+def scrape_reddit(query, location):
     try:
-        posts = reddit_scraper.search_reddit(search_term, limit=10)
+        posts = reddit_scraper.search_reddit(query, location, limit=100)
 
         # If no posts were found, try a more generic search
         if len(posts) == 0:
@@ -72,6 +69,8 @@ def scrape_google_places(query, location):
 
 
 def perplexity_analysis(comments):
+    print(json.dumps(comments))
+
     headers = {
         "Authorization": f"Bearer {PERPLEXITY_API_KEY}",
         "Content-Type": "application/json"
@@ -80,7 +79,35 @@ def perplexity_analysis(comments):
     payload = {
         "model": "sonar",
         "messages": [
-            {"role": "system", "content": "Return the top 3 most relevant comments."},
+            {"role": "system", "content": f"""Analyze this Reddit data and extract the most valuable information.
+
+    Return a JSON object with this exact structure:
+    {{
+      "recommendations": [
+        {{
+          "name": "Product or service name",
+          "link": "Direct purchase link if available",
+          "quoted_reviews": [
+            "Direct quote from Reddit comment 1",
+            "Direct quote from Reddit comment 2",
+            "Direct quote from Reddit comment 3",
+            "Direct quote from Reddit comment 4",
+            "Direct quote from Reddit comment 5"
+          ],
+          "sentiment": "positive/negative/mixed",
+          "key_features": ["feature 1", "feature 2", "feature 3"]
+        }}
+      ]
+    }}
+
+    Important guidelines:
+    
+Only include products/services that are explicitly mentioned and reviewed
+Use EXACT quotes from the Reddit comments, do not paraphrase
+Include purchase links only if they appear in the data
+Focus on the most frequently mentioned products/services
+Ensure the JSON is properly formatted with no errors
+             Return a maximum of 5 recommendations for the user."""},
             {"role": "user", "content": json.dumps(comments)}
         ]
     }

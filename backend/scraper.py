@@ -41,6 +41,12 @@ class RedditScraper:
 
         if category=="product":
              search_query = f"Best {query}"
+
+        
+        if category=="thoughts":
+            search_query = f"{query} review"
+            limit=8        
+
         
         print(f"Searching Reddit for: '{search_query}'")
 
@@ -72,6 +78,7 @@ class RedditScraper:
                     'score': post.score,
                     'upvote_ratio': post.upvote_ratio,
                     'num_comments': post.num_comments,
+                    'permalink': post.permalink,
                     'search_topic': search_query,
                     'comments': self.get_comments(post)
                 }

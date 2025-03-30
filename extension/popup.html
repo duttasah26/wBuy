@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddit Comments</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      margin: 0;
+    }
+
+    h2 {
+      color: #232f3e;
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .product-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #c45500;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+    }
+
+    .error {
+      color: #d00;
+      background-color: #fff0f0;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .reddit-section {
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-name {
+      font-size: 16px;
+      color: #0066c0;
+      margin-bottom: 8px;
+    }
+
+    .post-title {
+      font-weight: bold;
+      color: #0077cc;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .comment-text {
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 10px;
+      padding-left: 10px;
+    }
+
+    .sentiment {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .sentiment.positive {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+
+    .sentiment.negative {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+
+    .sentiment.mixed {
+      background-color: #fcf8e3;
+      color: #8a6d3b;
+    }
+
+    .features {
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .features span {
+      display: inline-block;
+      background-color: #e7f4ff;
+      padding: 2px 6px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      border-radius: 3px;
+    }
+
+    button {
+      background-color: #ff9900;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e88a00;
+    }
+
+    /* Add an icon to the loading state */
+    .loading::before {
+      content: '⏳';
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    /* Add a subtle background for the body */
+    .content {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h2>Reddit Comments</h2>
+  <div id="content" class="content">
+    <div class="loading">Loading product information...</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

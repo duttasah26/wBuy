@@ -29,6 +29,7 @@ def analyze():
 #if category=food; then scrap both reddit and google, combine and analyze
 #if category=product; then scrap only reddit, analyse
 #if category=location; then scrap reddit&google, combine and analyse
+#if category=thoughts; then scrap reddit, FOR EXTENSION ONLY
 
     if category == "food":
         # Format search query
@@ -55,6 +56,12 @@ def analyze():
             }
         analysis = perplexity_analysis_combined(combined_results)
         return analysis
+    
+    elif category=="thoughts":      #only for the extension
+        results = scrape_reddit(query, location, category)
+        analysis = perplexity_analysis_reddit(results)
+        return analysis
+    
 
 def scrape_reddit(query, location, category):
     try:
@@ -77,6 +84,7 @@ def scrape_google_places(query, location):
     places = sorted(places, key=lambda x: x.get('rating', 0), reverse=True)
     return places
 
+#For products --> REDDIT SCRAPER
 def perplexity_analysis(comments):
     print(json.dumps(comments))
 
@@ -140,6 +148,7 @@ def perplexity_analysis(comments):
     return final_json
 
 
+#FOR FOOD AND LOCATIONS --> REDDIT + GOOGLE PLACES API SCRAPER
 def perplexity_analysis_combined(combined_data):
     print(json.dumps(combined_data))
 
@@ -202,6 +211,74 @@ Important guidelines:
 
     return final_json
 
+
+#THIS IS FOR THE EXTENSION ONLY
+def perplexity_analysis_reddit(comments):
+    print(json.dumps(comments))
+    headers = {
+        "Authorization": f"Bearer {PERPLEXITY_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "model": "sonar",
+        "messages": [
+            {"role": "system", "content": """Analyze this Reddit data and extract the top comments about the product, exclude irrelevant posts.
+
+    Return a JSON object with this exact structure:
+{
+  "recommendations": [
+    {
+      "name": "Product Name",
+      "posts": [
+        {
+          "title": "Post Title 1",
+          "url": "https://reddit.com/r/subreddit/comments/123456/",
+          "comments": [
+            "This is comment 1 from post 1",
+            "This is comment 2 from post 1"
+          ]
+        },
+        {
+          "title": "Post Title 2",
+          "url": "https://reddit.com/r/subreddit/comments/789012/",
+          "comments": [
+            "This is comment 1 from post 2",
+            "This is comment 2 from post 2"
+          ]
+        },
+        
+        {
+          "title": "Post Title 3",
+          "url": "https://reddit.com/r/subreddit/comments/789012/",
+          "comments": [
+            "This is comment 1 from post 3",
+            "This is comment 2 from post 3"
+          ]
+        },
+        
+      ]
+    }
+  ]
+}
+
+    Important guidelines:
+
+    Only include products/services that are explicitly mentioned and reviewed
+    Use EXACT quotes from the Reddit comments, do not paraphrase
+    Include purchase links only if they appear in the data
+    Focus on the most frequently mentioned products/services
+    Ensure the JSON is properly formatted with no errors
+    RETURN ONLY THE JSON DATA, NO EXTRA TEXT BEFORE OR AFTER, no markdown ''' formatting
+    Return a maximum of 5 recommendations for the user."""},
+            {"role": "user", "content": json.dumps(comments)}
+        ]
+    }
+
+    response = requests.post(PERPLEXITY_API_URL, headers=headers, json=payload)
+    response_json = response.json()
+
+    return response_json["choices"][0]["message"]["content"]
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

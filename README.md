@@ -15,7 +15,7 @@
 <!-- TIP: You can alternatively directly upload a video up to 100MB by dropping it in while editing the README on GitHub. This displays a video player directly on GitHub instead of making it so that you have to click an image/link -->
 <div align="center">
   <a href="https://github.com/evanbabic/wbuy">
-    <img src="https://youtu.be/zR-UxlD1k4Q?si=oZPhCe9_u3pXozBx" alt="Project Demo">
+    <img src="/public/WBuy.jpg" alt="Project Demo">
     <p>Watch Demo Video</p>
   </a>
 </div>

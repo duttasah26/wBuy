@@ -16,7 +16,7 @@
 <div align="center">
   <a href="https://github.com/evanbabic/wbuy">
     <img src="/public/WBuy.jpg" alt="Project Demo">
-    <p>Watch Demo Video</p>
+    <a href="https://www.youtube.com/watch?v=zR-UxlD1k4Q"> WATCH THE DEMO VIDEO HERE ! </a>
   </a>
 </div>
 

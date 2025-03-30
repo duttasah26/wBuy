@@ -11,7 +11,7 @@ export default function Location( {setLocationData}) {
         fetch("https://ipapi.co/json/")
             .then((res) => res.json())
             .then((data) => {
-            const locationInfo = `${data.city}, ${data.region}, ${data.country_name}`;
+            const locationInfo = `${data.city}, ${data.region}`;
             setLocation(locationInfo);
             if (setLocationData) setLocationData(locationInfo); // Pass to parent if needed
             })

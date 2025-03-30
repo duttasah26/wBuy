@@ -1,19 +1,12 @@
 import praw
-import pymongo
 from datetime import datetime
-from pymongo import MongoClient
 import time
 import os
 from dotenv import load_dotenv
-import sys
 import requests
-from bs4 import BeautifulSoup
 import time
-import random
 import os
 from dotenv import load_dotenv
-import json
-
 
 load_dotenv()
 
@@ -42,8 +35,13 @@ class RedditScraper:
 
 
 #THIS IS WHAT WE USE TO RUN REDDIT SCRAPPER
-    def search_reddit(self, query, location, limit=10, sort='relevance', time_filter='all'):
-        search_query = f"Best {query} in {location}"
+    def search_reddit(self, query, location, category, limit=10, sort='relevance', time_filter='all'):
+        if category=="food" or category=="location":
+            search_query = f"Best {query} in {location}"
+
+        if category=="product":
+             search_query = f"Best {query}"
+        
         print(f"Searching Reddit for: '{search_query}'")
 
         posts_data = []
@@ -59,8 +57,14 @@ class RedditScraper:
 
             # Process each post
             for post in search_results:
-                if (query.lower() not in post.title.lower()) and (location.lower() not in post.title.lower()):
-                    continue  # Skip irrelevant posts
+
+                if category=="food" or category=="location":
+                    if(query.lower() not in post.title.lower()) and (location.lower() not in post.title.lower()):
+                        continue  # Skip irrelevant posts
+
+                elif category=="product":
+                     if(query.lower() not in post.title.lower()):
+                         continue
 
                 post_data = {
                     'post_id': post.id,
@@ -84,7 +88,7 @@ class RedditScraper:
 
         return posts_data
 
-    def get_comments(self, post, limit=100):
+    def get_comments(self, post, limit=20):
         comments_data = []
 
         try:
@@ -143,7 +147,7 @@ class GooglePlacesScraper:
             return []
 
     def get_reviews(self, place_id, search_query=None):
-        """Fetch reviews for a place using the Place ID"""
+        #Fetch reviews for a place using the Place ID
         google_places_details_url = 'https://maps.googleapis.com/maps/api/place/details/json'
         params = {
             'key': self.api_key,

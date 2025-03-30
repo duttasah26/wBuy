@@ -23,8 +23,8 @@ export default function Home() {
   }
 
   return (
-    <div className="pt-10">
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 flex items-center justify-center">
+    <div className="pt-40">
+      <main className="mx-auto w-full flex-1 px-4 flex items-center justify-center">
         <main className="container">
           <section className="py-4">
             <div className="container overflow-hidden">
@@ -75,11 +75,22 @@ export default function Home() {
                 <input
                   type="radio"
                   name="category"
-                  value="service"
-                  checked={category === "service"}
+                  value="product"
+                  checked={category === "product"}
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                Service
+                Product
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="category"
+                  value="location"
+                  checked={category === "location"}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                Location
               </label>
           </div>
 

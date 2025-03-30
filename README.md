@@ -119,8 +119,6 @@ The application uses the following technologies:
    - Create a `.env` file in the `backend/` directory.
    - Add the following variables:
      ```
-     MONGO_CONNECTION_STRING=mongodb://localhost:27017/
-     MONGO_DB_NAME=reddit_data
      PERPLEXITY_API_KEY=YOUR_PERPLEXITY_API_KEY
      REDDIT_CLIENT_ID=YOUR_REDDIT_CLIENT_ID
      REDDIT_CLIENT_SECRET=YOUR_REDDIT_CLIENT_SECRET

@@ -2,7 +2,7 @@
   <!-- REMOVE THIS IF YOU DON'T HAVE A LOGO -->
     <img src="/public/WBuyLogo.png" alt="Logo" width="80" height="80">
 
-<h3 align="center">wBuy</h3>
+<h3 align="center">W Buy</h3>
 
   <p align="center">
     AI-powered companion for finding the best products, food, and locations.

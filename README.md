@@ -148,6 +148,3 @@ The application uses the following technologies:
    - Enable "Developer mode".
    - Click "Load unpacked" and select the `extension/` directory.
 
-## Acknowledgments
-
-- This README was created using [gitreadme.dev](https://gitreadme.dev) — an AI tool that looks at your entire codebase to instantly generate high-quality README files.
